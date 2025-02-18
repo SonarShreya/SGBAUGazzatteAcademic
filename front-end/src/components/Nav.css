@@ -1,0 +1,57 @@
+/* Navigation Container */
+.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color:skyblue;
+    padding: 10px 20px;
+  }
+  
+  /* Logo and Title - Flexbox */
+  .logo-title {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Space between logo and title */
+  }
+  
+  /* Logo */
+  .logo {
+    width: 80px;
+    height: auto;
+  }
+  
+  /* Title */
+  .title {
+    font-size: 20px;
+    white-space: nowrap; /* Prevent text from breaking */
+  }
+  
+  /* Remove Bullet Points and Align in One Line */
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    list-style: none; /* Remove dots before list items */
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* Style Signup, Login, and Logout as Input Buttons */
+  .nav-links li a {
+    text-decoration: none;
+    color:black ;
+    font-size: 16px;
+    padding: 8px 20px;
+    border: 2px solid white ; /* Border like input field */
+    border-radius: 5px;
+    background-color: white;
+    transition: 0.3s;
+    display: inline-block;
+  }
+  
+  /* Hover Effect */
+  .nav-links li a:hover {
+    background-color: pink;
+    color: white;
+  }
+  

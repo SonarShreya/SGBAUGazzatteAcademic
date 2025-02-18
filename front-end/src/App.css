@@ -1,0 +1,409 @@
+.nav-ul li{
+  display :inline-block;
+  padding: 7px;
+}
+.nav-ul li a{
+ 
+  color:black;
+  
+  padding: 5px;
+  text-decoration: none;
+}
+.inputBox{
+
+    
+    text-decoration: solid 1px black;
+  }
+  .table td {
+    cursor: pointer;
+    color: blue;
+    transition: color 0.2s ease-in-out;
+  }
+  
+.pdf{
+  margin-left: 90%;
+}
+
+
+
+  
+
+  /* CSS for the button */
+  .delete-button {
+    background-color: #007bff; /* Bootstrap primary color */
+    color: white; /* Text color */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px 15px; /* Padding inside the button */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; 
+    margin: 10px;/* Smooth transition for hover effect */
+  }
+  
+  /* Button hover effect */
+  .delete-button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+  }
+
+  /* CSS for the button */
+.add-button {
+  background-color: #007bff; /* Bootstrap primary color */
+  color: white; /* Text color */
+  border: none; /* No border */
+  border-radius: 5px; /* Rounded corners */
+  padding: 10px 15px; /* Padding inside the button */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+  margin-left: 10px;
+}
+
+/* Button hover effect */
+.add-button:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+}
+
+
+.top-left-button {
+    position: absolute; /* Position the button absolutely */
+    top: 10px; /* Distance from the top */
+    left: 10px; /* Distance from the left */
+    padding: 10px 20px; /* Padding for the button */
+    font-size: 16px; /* Font size */
+    background-color: #007BFF; /* Button background color */
+    color: white; /* Text color */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Change cursor on hover */
+}
+
+.top-left-button:hover {
+    background-color: #0056b3; /* Darker background on hover */
+}
+  .table td:hover {
+    color: black;
+  }
+  
+  /* General Styles */
+.nav-right {
+  list-style: none; /* Remove bullets */
+  display: flex; /* Arrange items in a row */
+  justify-content: flex-end; /* Align items to the right */
+  gap: 20px; /* Add spacing between items */
+ /* Remove default padding */
+  
+}
+
+
+
+
+
+.logo{
+  width:60px;
+  height: 50px;
+  float: left;
+  border-radius: 50%;
+  margin-top: 3px;
+  margin-left: 20px;
+
+  
+}
+
+/* List Item Styling */
+.nav-right li {
+  font-size: 16px; /* Adjust font size */
+}
+.invalid-input{
+  color: red;
+  margin-top: 20px;
+  display: block;
+  margin-left: 20px;
+}
+.product-list{
+ text-align: center; 
+ margin-top: 50px;
+ margin: 0%;
+   padding: 0;
+    border-spacing: 0; /* Ensures no extra space from border spacing */
+    border-collapse: collapse;
+}
+.product-list ul li{
+  display: inline-block;
+  border: 1px solid skyblue;
+   padding:5px;
+  width: 150px;
+   /* Collapses any extra spacing in table borders */
+  }
+    .serach-product-box{
+      width:400px;
+      margin: 20px;
+      height: 40px;
+      padding-left: 10px;
+      border: 1px solid skyblue;
+
+    }
+
+/* Link Styling */
+.nav-right li a {
+  text-decoration: none; /* Remove underline */
+  color: #333; /* Default text color */
+  padding: 10px 15px; /* Add padding around the links */
+  border: 1px solid transparent; /* Optional border for hover effect */
+  border-radius: 5px; /* Rounded edges */
+  transition: all 0.3s ease; /* Smooth hover effect */
+}
+
+/* Hover Effect */
+.nav-right li a:hover {
+  color: #fff; /* Change text color on hover */
+  background-color: #007bff; /* Background color on hover */
+  border-color: #007bff; /* Add a border on hover */
+}
+
+/* Active Link Styling (optional) */
+.nav-right li a.active {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+ .nav-ul{
+  padding: 5px;
+  background-color:skyblue;
+}/* Login.css */
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f4f4f9;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.inputBox {
+  width: 300px;
+  padding: 2px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.inputBox:focus {
+  outline: none;
+  border-color: #6c63ff;
+}
+
+.appButton {
+  width: 320px;
+  padding: 12px;
+  border: none;
+  background-color: #6c63ff;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.appButton:hover {
+  background-color: #5a54e1;
+}
+.table{
+  body {
+    font-family: Arial, sans-serif;
+  }
+
+  .nav_right{
+    text-align:right ;
+    background-color: skyblue;
+  }
+  .container {
+    text-align: center;
+    margin: 20px;
+  }
+  .search-section {
+    margin-bottom: 15px;
+  }
+  .search-section input {
+    padding: 5px;
+    margin: 5px;
+    width: 150px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  table, th, td {
+    border: 1px solid black;
+  }
+  th, td {
+    padding: 10px;
+    text-align: center;
+  }
+  th {
+    background-color: #f2f2f2;
+  }
+  .part-header {
+    font-weight: bold;
+    background-color: #d9d9d9;
+  }
+}
+.footer{
+  background-color: skyblue;
+  width: 100%;
+  text-align: center;
+  border-bottom: 0%;
+  text-align: center;
+  padding: 2px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+
+}
+
+
+.register{
+  margin-left: 30%;
+}
+.inputBox{
+  
+  display: block;
+  margin: 10px;
+  padding: 7px;
+  width: 300px;
+  border: 1px solid skyblue;
+  bottom:0 ;
+  
+  text-align: center;
+
+}
+
+.appbutton{
+  margin:25px;
+  padding:10px;
+  width :150px;
+  background-color:skyblue;
+
+  border :1px solid black;
+  cursor:pointer;
+
+}
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+
+
+
+.image-container {
+  text-align: center; /* Center the image */
+  padding: 10px; 
+}
+
+.image-container img {
+  height: 40px;
+  width: 40px;
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Shadow effect */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.form-container {
+  width: 100%;
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+}
+
+.form-container div {
+  margin-bottom: 15px;
+}
+
+.form-container label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.form-container input {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.form-container button {
+  padding: 10px 15px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.form-container button[type="submit"] {
+  background-color: #4caf50;
+  color: white;
+}
+
+.form-container button[type="button"] {
+  background-color: #f44336;
+  color: white;
+}
+
+.form-container button:hover {
+  opacity: 0.9;
+}
