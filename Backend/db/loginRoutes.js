@@ -62,40 +62,48 @@ const Login = require("./Login"); // Assuming Login is a User model
 
 
 
-
-
 router.post("/api/login", async (req, res) => {
   try {
     let { email, password } = req.body;
 
     console.log("Received login request for email:", email);
 
-    // Convert email to lowercase and trim any spaces
+    // Validate input
+    if (!email || !password) {
+      return res.status(400).json({ message: "Email and password are required" });
+    }
+
+    // Convert email to lowercase and trim spaces
     email = email.toLowerCase().trim();
 
+    // Find user in database
     const user = await Login.findOne({ email });
-
-    console.log("User found in DB:", user);
 
     if (!user) {
       return res.status(400).json({ message: "User does not exist" });
     }
 
-    const isMatch = await bcrypt.compare(password, user.password);
+    console.log("User found in DB:", user.email);
 
-    console.log("Password match:", isMatch);
+    // Compare provided password with stored hashed password
+    const isMatch = await bcrypt.compare(password, user.password);
 
     if (!isMatch) {
       return res.status(400).json({ message: "Invalid credentials" });
     }
 
-    res.status(200).json({ message: "Login successful" });
+    res.status(200).json({ 
+      message: "Login successful",
+      email: user.email,
+      password: password // ⚠️ Only for debugging, REMOVE in production
+    });
 
   } catch (error) {
     console.error("Login error:", error);
-    res.status(500).json({ error: "Server error" });
+    res.status(500).json({ message: "Server error" });
   }
 });
+
 
 
 router.get("/api/users", async (req, res) => {
