@@ -13,61 +13,61 @@ const Login = () => {
     }
   }, [navigate]);
 
-//   const handleLogin = async () => {
-//   try {
-//     let result = await fetch("http://localhost:5001/api/logins", { // Ensure the URL is correct
-//       method: "POST",
-//       body: JSON.stringify({ email, password }),
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//     });
-
-//     if (!result.ok) {
-//       throw new Error("Login failed");
-//     }
-
-//     result = await result.json();
-//     console.log("Login result:", result);
-
-//     if (result.message === "Login successful") {
-//       localStorage.setItem("user", JSON.stringify(result.user));
-//       navigate("/DisplayData");
-//     } else {
-//       throw new Error("Login failed");
-//     }
-//   } catch (error) {
-//     console.error("Login error:", error);
-//     alert("An error occurred during login. Please try again.");
-//   }
-// };
-
-
-const handleLogin = async () => {
+  const handleLogin = async () => {
   try {
-    const response = await fetch("http://localhost:5001/api/login", {
+    let result = await fetch("http://localhost:5001/api/login", { // Ensure the URL is correct
       method: "POST",
       body: JSON.stringify({ email, password }),
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
 
-    console.log("Response status:", response.status);
-    console.log("Response headers:", response.headers);
+    if (!result.ok) {
+      throw new Error("Login failed");
+    }
 
-    const result = await response.json();
+    result = await result.json();
     console.log("Login result:", result);
 
     if (result.message === "Login successful") {
       localStorage.setItem("user", JSON.stringify(result.user));
       navigate("/DisplayData");
     } else {
-      alert(result.message || "Login failed");
+      throw new Error("Login failed");
     }
   } catch (error) {
     console.error("Login error:", error);
     alert("An error occurred during login. Please try again.");
   }
 };
+
+
+// const handleLogin = async () => {
+//   try {
+//     const response = await fetch("http://localhost:5001/api/login", {
+//       method: "POST",
+//       body: JSON.stringify({ email, password }),
+//       headers: { "Content-Type": "application/json" },
+//     });
+
+//     console.log("Response status:", response.status);
+//     console.log("Response headers:", response.headers);
+
+//     const result = await response.json();
+//     console.log("Login result:", result);
+
+//     if (result.message === "Login successful") {
+//       localStorage.setItem("user", JSON.stringify(result.user));
+//       navigate("/DisplayData");
+//     } else {
+//       alert(result.message || "Login failed");
+//     }
+//   } catch (error) {
+//     console.error("Login error:", error);
+//     alert("An error occurred during login. Please try again.");
+//   }
+// };
 
 
   return (
