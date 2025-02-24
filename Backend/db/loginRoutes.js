@@ -1,150 +1,54 @@
-// const express = require("express");
-// const router = express.Router();
-// const bcrypt = require("bcryptjs");
-// const Login = require("./Login"); // ✅ Corrected Import
+// const mongoose = require("mongoose");
 
-// // ✅ POST API: Register/Login User
-// router.post("/api/logins", async (req, res) => {
-//   try {
-//     const { email, password } = req.body;
-
-//     // Check if user already exists
-//     let user = await Login.findOne({ email });
-//     if (user) {
-//       return res.status(400).json({ error: "User already exists" });
-//     }
-
-//     // Hash the password before saving
-//     const hashedPassword = await bcrypt.hash(password, 10);
-//     user = new Login({ email, password: hashedPassword });
-
-//     await user.save();
-//     res.status(201).json({ message: "User registered successfully" });
-
-//   } catch (error) {
-//     res.status(500).json({ error: "Error in registering user" });
-//   }
+// const LoginSchema = new mongoose.Schema({
+//   email: { type: String, required: true, unique: true },
+//   password: { type: String, required: true },
 // });
 
-// // ✅ GET API: Fetch All Login Users
-// router.get("/api/logins", async (req, res) => {
-//   try {
-//     const users = await Login.find(); // Fetch all users
-//     res.json(users);
-//   } catch (error) {
-//     console.error("Error fetching users:", error);
-//     res.status(500).json({ error: "Error fetching users" });
-//   }
+// const Login = mongoose.model("Login", LoginSchema);
+
+// module.exports = Login;
+
+
+// const mongoose = require("mongoose");
+
+// const LoginSchema = new mongoose.Schema({
+//   email: { type: String, required: true, unique: true },
+//   password: { type: String, required: true },
+//   lastLogin: { type: Date },
 // });
 
-// module.exports = router;
+// const Login = mongoose.model("Login", LoginSchema);
+
+// module.exports = Login;
 
 
+// const mongoose = require("mongoose");
+
+// const loginSchema = new mongoose.Schema({
+//   email: { type: String, required: true, unique: true },
+//   password: { type: String, required: true }
+// });
+
+// const Login = mongoose.model("login", loginSchema);
+
+// module.exports = Login;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-const express = require("express");
+const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
-const router = express.Router();
-const Login = require("./Login"); // Assuming Login is a User model
 
-
-
-router.post("/api/login", async (req, res) => {
-  try {
-    let { email, password } = req.body;
-
-    console.log("Received login request for email:", email);
-
-    // Validate input
-    if (!email || !password) {
-      return res.status(400).json({ message: "Email and password are required" });
-    }
-
-    // Convert email to lowercase and trim spaces
-    email = email.toLowerCase().trim();
-
-    // Find user in database
-    const user = await Login.findOne({ email });
-
-    if (!user) {
-      return res.status(400).json({ message: "User does not exist" });
-    }
-
-    console.log("User found in DB:", user.email);
-
-    // Compare provided password with stored hashed password
-    const isMatch = await bcrypt.compare(password, user.password);
-
-    if (!isMatch) {
-      return res.status(400).json({ message: "Invalid credentials" });
-    }
-
-    res.status(200).json({ 
-      message: "Login successful",
-      email: user.email,
-      password: password // ⚠️ Only for debugging, REMOVE in production
-    });
-
-  } catch (error) {
-    console.error("Login error:", error);
-    res.status(500).json({ message: "Server error" });
-  }
+const loginSchema = new mongoose.Schema({
+  email: { type: String, required: true, unique: true, lowercase: true, trim: true },
+  password: { type: String, required: true }
 });
 
-
-
-router.get("/api/users", async (req, res) => {
-  try {
-    const users = await Login.find();  // Fetch all users
-
-    // Remove password from each user object and send the password as well
-    const usersWithPassword = users.map(user => {
-      const userObj = user.toObject();
-      return {
-        id: userObj._id,
-        email: userObj.email,
-        Password: userObj.password  // Include the hashed password in the response (for testing purposes)
-      };
-    });
-
-    res.status(200).json(usersWithPassword);
-  } catch (error) {
-    console.error("Error fetching users:", error);
-    res.status(500).json({
-      error: "Error fetching users",
-      details: error.message
-    });
-  }
+// Hash password before saving
+loginSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) return next();
+  this.password = await bcrypt.hash(this.password, 10);
+  next();
 });
 
-
-// Optional: Fetch user by email
-router.get("/api/users/:email", async (req, res) => {
-  try {
-    const user = await Login.findOne({ email: req.params.email }); // Fetch user by email
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
-    const userObj = user.toObject(); 
-    delete userObj.password; // Remove password from response
-    res.status(200).json(userObj);
-  } catch (error) {
-    console.error("Error fetching user:", error);
-    res.status(500).json({ error: "Error fetching user" });
-  }
-});
-
-module.exports = router;
+const Login = mongoose.model("Login", loginSchema);
+module.exports = Login;
