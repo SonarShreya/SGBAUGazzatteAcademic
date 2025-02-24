@@ -1,77 +1,44 @@
-import React, { useEffect } from "react";
+
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 const Login = () => {
-  const [email, setEmail] = React.useState(""); 
-  const [password, setPassword] = React.useState(""); 
+  const [email, setEmail] = useState(""); 
+  const [password, setPassword] = useState(""); 
   const navigate = useNavigate();
-
   useEffect(() => {
     const auth = localStorage.getItem("user");
     if (auth) {
-      navigate("/"); // If user is already logged in, redirect to home
+      navigate("/"); 
     }
   }, [navigate]);
 
   const handleLogin = async () => {
-  try {
-    let result = await fetch("http://localhost:5001/api/login", { // Ensure the URL is correct
-      method: "POST",
-      body: JSON.stringify({ email, password }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    try {
+      const response = await fetch("http://localhost:5001/api/login", { // ✅ Corrected endpoint
+        method: "POST",
+        body: JSON.stringify({ email, password }),
+        headers: { "Content-Type": "application/json" },
+      });
 
-    if (!result.ok) {
-      throw new Error("Login failed");
-    }
+      const result = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(result.message || "Login failed");
+      }
 
-    result = await result.json();
-    console.log("Login result:", result);
+      // Store only necessary user info in localStorage
+      localStorage.setItem("user", JSON.stringify({ email: result.email }));
 
-    if (result.message === "Login successful") {
-      localStorage.setItem("user", JSON.stringify(result.user));
       navigate("/DisplayData");
-    } else {
-      throw new Error("Login failed");
+
+    } catch (error) {
+      console.error("Login error:", error);
+      alert(error.message || "An error occurred during login. Please try again.");
     }
-  } catch (error) {
-    console.error("Login error:", error);
-    alert("An error occurred during login. Please try again.");
-  }
-};
-
-
-// const handleLogin = async () => {
-//   try {
-//     const response = await fetch("http://localhost:5001/api/login", {
-//       method: "POST",
-//       body: JSON.stringify({ email, password }),
-//       headers: { "Content-Type": "application/json" },
-//     });
-
-//     console.log("Response status:", response.status);
-//     console.log("Response headers:", response.headers);
-
-//     const result = await response.json();
-//     console.log("Login result:", result);
-
-//     if (result.message === "Login successful") {
-//       localStorage.setItem("user", JSON.stringify(result.user));
-//       navigate("/DisplayData");
-//     } else {
-//       alert(result.message || "Login failed");
-//     }
-//   } catch (error) {
-//     console.error("Login error:", error);
-//     alert("An error occurred during login. Please try again.");
-//   }
-// };
-
+  };
 
   return (
-    <div className="login">
+    <div className="login"> 
       <h1>Login Page</h1>
       <input
         type="text"
@@ -82,12 +49,12 @@ const Login = () => {
       />
       <input
         type="password"
-        className="inputBox"
+        className="inputBox" 
         placeholder="Enter password"
         onChange={(e) => setPassword(e.target.value)}
-        value={password}
+        value={password} 
       />
-      <button onClick={handleLogin} className="appButton">
+      <button onClick={handleLogin} className="appButton" type="button">
         Login
       </button>
     </div>
